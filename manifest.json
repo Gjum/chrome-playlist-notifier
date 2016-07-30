@@ -4,6 +4,7 @@
   "description": "Inspects tabs for data and sends it to a local web server.",
   "version": "0.0.2",
   "permissions": [
+    "contextMenus",
     "tabs"
   ],
   "background": {
