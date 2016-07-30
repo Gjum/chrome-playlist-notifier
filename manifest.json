@@ -11,4 +11,10 @@
       "background.js"
     ]
   },
+  "icons": {
+    "19": "img/icon-19.png",
+    "24": "img/icon-24.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon-128.png"
+  }
 }
