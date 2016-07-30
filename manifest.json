@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
-
   "name": "Inspect Client",
   "description": "Inspects tabs for data and sends it to a local web server.",
-  "version": "0.0.1",
-
-  "background": {"scripts": ["background.js"]},
+  "version": "0.0.2",
   "permissions": [
-    "notifications",
     "tabs"
-  ]
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
 }
