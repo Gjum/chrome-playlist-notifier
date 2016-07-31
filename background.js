@@ -58,4 +58,5 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
   watched.delete(tabId);
+  sendDataToServer({"audible": false})
 });
