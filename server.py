@@ -5,6 +5,7 @@
 port = 1234
 
 import json
+import os
 import sys
 import time
 
@@ -35,6 +36,9 @@ class WebServer(BaseHTTPRequestHandler):
 
         notification.update('Now playing', data['title'])
         notification.show()
+
+        with open(os.path.expandvars('/tmp/$USER.chrome-playlist-notifier.now-playing'), 'w') as f:
+            f.write(data['title'])
 
     def log_request(self, *args, **kwargs):
         if verbose:

@@ -17,5 +17,6 @@ when an audible chrome tab changes its title, show it via libnotify
 1. open the context menu (right-click) and select `watch this music`
 
 Now you will receive notifications of the page title when the page status changes.
+The page title is also written to `/tmp/$USER.chrome-playlist-notifier.now-playing`.
 To no longer receive notifications, open the context menu again and select `unwatch this music`.
 When the tab closes, it will also be removed from the watched tabs.
