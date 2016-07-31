@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # url format for sending data: /?data=<urlencoded json of the data>
 # pass -v as first arg to print the received json data
+# current tab title is written to /tmp/$USER.chrome-playlist-notifier.now-playing
 
 port = 1234
 
@@ -20,6 +21,7 @@ Notify.init("Chrome Playlist Notifier")
 notification = Notify.Notification.new('Chrome Playlist Notifier')
 
 verbose = len(sys.argv) > 1 and sys.argv[1] == '-v'
+now_playing_path = os.path.expandvars('/tmp/$USER.chrome-playlist-notifier.now-playing')
 
 class WebServer(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -34,11 +36,16 @@ class WebServer(BaseHTTPRequestHandler):
         if verbose:
             print(data)
 
-        notification.update('Now playing', data['title'])
-        notification.show()
+        if data['audible']:
+            notification.update('Now playing', data['title'])
+            notification.show()
+            with open(now_playing_path, 'w') as f:
+                f.write(data['title'])
 
-        with open(os.path.expandvars('/tmp/$USER.chrome-playlist-notifier.now-playing'), 'w') as f:
-            f.write(data['title'])
+        else:
+            notification.close()
+            try: os.remove(now_playing_path)
+            except FileNotFoundError: pass
 
     def log_request(self, *args, **kwargs):
         if verbose:
@@ -46,4 +53,6 @@ class WebServer(BaseHTTPRequestHandler):
 
 try:
     HTTPServer(('localhost', port), WebServer).serve_forever()
-except KeyboardInterrupt: pass
+except KeyboardInterrupt:
+    try: os.remove(now_playing_path)
+    except FileNotFoundError: pass
