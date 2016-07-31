@@ -8,14 +8,14 @@ when an audible chrome tab changes its title, show it via libnotify
 1. start the notifier server: `python3 server.py &`
   - you should run this on login, for example in `~/.xinitrc` or in your desktop environment
 1. install the chrome extension:
-  1. open the [extensions page](chrome://extensions/)
+  1. open the extensions page: `chrome://extensions/`
   1. enable `Developer mode`
-  1. `Load unpacked extension`, select `chrome-playlist-notifier`
+  1. select `Load unpacked extension`, choose `chrome-playlist-notifier`
 
 ## Usage
 1. open a page with a playlist, for example YouTube, Soundcloud, Bandcamp, ...
-1. open the context menu (right-click)
-1. select `watch this music`
-1. now you will receive notifications of the page title when the page status changes
-1. to no longer receive notifications, open the context menu again and select `unwatch this music`
-1. when the tab closes, it will also be removed from the watched tabs
+1. open the context menu (right-click) and select `watch this music`
+
+Now you will receive notifications of the page title when the page status changes.
+To no longer receive notifications, open the context menu again and select `unwatch this music`.
+When the tab closes, it will also be removed from the watched tabs.
