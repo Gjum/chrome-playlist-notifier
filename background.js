@@ -9,8 +9,8 @@ function sendDataToServer(data) {
   x.send();
 };
 
-function checkAudible(tab) {
-  if (tab.audible && watched.has(tab.id)) {
+function checkTab(tab) {
+  if (watched.has(tab.id)) {
     sendDataToServer({
       "title": tab.title,
       "url": tab.url,
@@ -41,7 +41,7 @@ chrome.runtime.onInstalled.addListener(function() {
           watched.delete(tab.id);
         } else {
           watched.add(tab.id);
-          checkAudible(tab);
+          checkTab(tab);
         }
         updateContextMenu(tab.id);
       }
@@ -49,7 +49,7 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-  checkAudible(tab);
+  checkTab(tab);
 });
 
 chrome.tabs.onActivated.addListener(function (activeInfo) {
