@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Chrome Playlist Notifier",
   "description": "when an audible chrome tab changes its title, show it via libnotify",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "permissions": [
     "contextMenus",
     "tabs"

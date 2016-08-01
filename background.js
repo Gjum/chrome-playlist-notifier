@@ -12,6 +12,7 @@ function sendDataToServer(data) {
 function checkTab(tab) {
   if (watched.has(tab.id)) {
     sendDataToServer({
+      "id": tab.id,
       "title": tab.title,
       "url": tab.url,
       "faviconUrl": tab.faviconUrl,
@@ -58,5 +59,8 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
   watched.delete(tabId);
-  sendDataToServer({"audible": false})
+  sendDataToServer({
+      "id": tabId,
+      "audible": false,
+  })
 });
